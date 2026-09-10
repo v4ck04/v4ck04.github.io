@@ -1,0 +1,483 @@
+<!-- test --><title>Vladica Rizić</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=JetBrains+Mono:wght@500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+
+<style>
+  :root {
+    --ink:        #0F1E1C;
+    --paper:      #F6F4F0;
+    --panel:      #FFFFFF;
+    --slate:      #5A6B67;
+    --line:       #DED8CF;
+    --brass:      #96682A;
+    --brass-soft: #F0E4CE;
+
+    --text:       var(--ink);
+    --text-dim:   var(--slate);
+    --bg:         var(--paper);
+    --surface:    var(--panel);
+    --border:     var(--line);
+    --accent:     var(--brass);
+    --accent-bg:  var(--brass-soft);
+    --on-accent:  #FFF9EE;
+    --hatch:      rgba(15, 30, 28, 0.055);
+
+    --measure: 62ch;
+    --pad: clamp(1.25rem, 4vw, 2.5rem);
+
+    --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+    --f-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", monospace;
+
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --text:      #E9E5DD;
+      --text-dim:  #9AAAA5;
+      --bg:        #0C1817;
+      --surface:   #132523;
+      --border:    #24403B;
+      --accent:    #D6A24A;
+      --accent-bg: #22322B;
+      --on-accent: #0C1817;
+      --hatch:     rgba(233, 229, 221, 0.05);
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --text:      #E9E5DD;
+    --text-dim:  #9AAAA5;
+    --bg:        #0C1817;
+    --surface:   #132523;
+    --border:    #24403B;
+    --accent:    #D6A24A;
+    --accent-bg: #22322B;
+    --on-accent: #0C1817;
+    --hatch:     rgba(233, 229, 221, 0.05);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--f-body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 70rem;
+    margin: 0 auto;
+    padding-inline: var(--pad);
+  }
+
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 0.688rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    line-height: 1.1;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .masthead {
+    border-bottom: 1px solid var(--border);
+    padding-block: clamp(2.5rem, 7vw, 4.5rem) clamp(2rem, 5vw, 3rem);
+  }
+  .masthead h1 {
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    letter-spacing: -0.02em;
+    margin-block: 0.75rem 1rem;
+  }
+  .lede {
+    font-size: clamp(1.05rem, 2.2vw, 1.28rem);
+    max-width: var(--measure);
+    color: var(--text-dim);
+    margin: 0;
+  }
+  .lede strong { color: var(--text); font-weight: 600; }
+  .contact-row {
+    display: flex; flex-wrap: wrap;
+    gap: 0.5rem 1.75rem;
+    margin-top: 2rem;
+    font-family: var(--f-mono);
+    font-size: 0.813rem;
+  }
+  .contact-row a {
+    color: var(--text); text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+  }
+  .contact-row a:hover { color: var(--accent); }
+
+  .project {
+    padding-block: clamp(3rem, 8vw, 5.5rem);
+    border-bottom: 1px solid var(--border);
+  }
+  .project-head {
+    display: grid; gap: 1.25rem;
+    grid-template-columns: 1fr;
+    margin-bottom: 2.5rem;
+  }
+  @media (min-width: 56rem) {
+    .project-head {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 3.5rem; align-items: end;
+    }
+  }
+  .project-head h2 {
+    font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+    letter-spacing: -0.015em;
+    margin-block: 0.6rem 0;
+  }
+  .project-problem { margin: 0; color: var(--text-dim); max-width: 46ch; }
+  .project-problem em { font-style: italic; color: var(--text); }
+
+  .shots { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
+  @media (min-width: 48rem) { .shots.split { grid-template-columns: 1fr 1fr; } }
+
+  figure {
+    margin: 0;
+    background:
+      repeating-linear-gradient(-45deg, transparent 0 9px, var(--hatch) 9px 10px),
+      var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    min-height: 8rem;
+  }
+  figure img, figure video {
+    display: block; width: 100%; height: auto;
+    border-bottom: 1px solid var(--border);
+  }
+  figcaption {
+    font-family: var(--f-mono);
+    font-size: 0.688rem;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    padding: 0.7rem 0.9rem;
+    margin-top: auto;
+    display: flex; justify-content: space-between; gap: 1rem;
+  }
+  figcaption .path { color: var(--accent); }
+
+  .does {
+    margin-top: 2.5rem;
+    display: grid; gap: 0.9rem 3rem;
+    grid-template-columns: 1fr;
+    max-width: 56rem;
+  }
+  @media (min-width: 42rem) { .does { grid-template-columns: 1fr 1fr; } }
+  .does div { display: flex; gap: 0.75rem; align-items: baseline; }
+  .does div::before {
+    content: ""; flex: none;
+    width: 6px; height: 6px;
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .stack {
+    margin-top: 2rem;
+    font-family: var(--f-mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+  .stack span { color: var(--text); }
+
+  .services { padding-block: clamp(3rem, 8vw, 5rem); }
+  .services h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    margin-block: 0.7rem 2.25rem;
+    max-width: 30ch;
+  }
+  .service-grid {
+    display: grid; gap: 1.75rem 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+  .service-grid h3 { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.35rem; }
+  .service-grid p { margin: 0; color: var(--text-dim); font-size: 0.938rem; }
+
+  .footer {
+    border-top: 1px solid var(--border);
+    padding-block: clamp(2.5rem, 6vw, 4rem);
+  }
+  .footer h2 { font-size: clamp(1.6rem, 4vw, 2.25rem); margin-bottom: 1rem; }
+  .footer p { color: var(--text-dim); max-width: var(--measure); margin-block: 0 1.75rem; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 0.75rem 1rem; }
+
+  .btn {
+    display: inline-block;
+    font-family: var(--f-mono);
+    font-size: 0.813rem; letter-spacing: 0.03em;
+    text-decoration: none;
+    padding: 0.7rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--text);
+    background: var(--surface);
+  }
+  .btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+  .btn:hover { border-color: var(--accent); }
+
+  .colophon {
+    margin-top: 3rem;
+    font-family: var(--f-mono);
+    font-size: 0.688rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Full-stack developer &middot; Serbia</p>
+    <h1>Vladica Rizić</h1>
+    <p class="lede">
+      I build the software small businesses actually run on — <strong>booking systems</strong>
+      and <strong>online stores</strong>, custom-built, so there's no monthly platform fee
+      and no template someone else is also using.
+    </p>
+    <div class="contact-row">
+      <a href="mailto:vladicarizic04@gmail.com">vladicarizic04@gmail.com</a>
+      <a href="https://github.com/v4ck04">github.com/v4ck04</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="project">
+    <div class="wrap">
+
+      <div class="project-head">
+        <div>
+          <p class="eyebrow">Coffee shop &middot; store, ordering &amp; reservations</p>
+          <h2>kafe.rs</h2>
+        </div>
+        <p class="project-problem">
+          A coffee shop that could only sell across the counter. Now customers order online
+          and reserve tables, and the owner sees <em>orders, reservations, messages and
+          reviews</em> in one place instead of four.
+        </p>
+      </div>
+
+      <div class="shots">
+        <figure>
+          <img loading="lazy" onerror="this.closest(&#39;figure&#39;)?this.closest(&#39;figure&#39;).remove():this.remove()" src="images/kafers-home.jpg" alt="kafe.rs storefront home page">
+          <figcaption><span>Storefront</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="shots split" style="margin-top: 1.25rem;">
+        <figure>
+          <img loading="lazy" onerror="this.closest(&#39;figure&#39;)?this.closest(&#39;figure&#39;).remove():this.remove()" src="images/kafers-menu.jpg" alt="Product cards with prices and add-to-cart">
+          <figcaption><span>Menu &amp; ordering</span></figcaption>
+        </figure>
+        <figure>
+          <img loading="lazy" onerror="this.closest(&#39;figure&#39;)?this.closest(&#39;figure&#39;).remove():this.remove()" src="images/kafers-admin.jpg" alt="Admin dashboard with revenue chart and order status">
+          <figcaption><span>Admin dashboard</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="does">
+        <div>Online ordering with cart, checkout and discount codes</div>
+        <div>Table reservations, handled alongside orders</div>
+        <div>Customer accounts, so regulars keep their order history</div>
+        <div>Admin: menu and product management, with categories and pricing</div>
+        <div>Admin: orders, reservations, messages and reviews on one screen</div>
+        <div>Dashboard: revenue trend, order status breakdown, daily figures</div>
+        <div>Role-based admin access, so staff see only their part</div>
+        <div>Tuned for speed — WebP images, cache headers, accessibility passes</div>
+      </div>
+
+      <p class="stack">Built with <span>Laravel · PHP · Blade · MySQL · GSAP</span></p>
+
+    </div>
+  </section>
+
+  <section class="project">
+    <div class="wrap">
+
+      <div class="project-head">
+        <div>
+          <p class="eyebrow">Library &middot; catalogue &amp; lending</p>
+          <h2>Biblioteka</h2>
+        </div>
+        <p class="project-problem">
+          A librarian tracking who has what, and what's <em>overdue</em>, on paper —
+          replaced by a catalogue the public can search and an admin side that knows
+          where every copy is.
+        </p>
+      </div>
+
+      <div class="shots">
+        <figure>
+          <img loading="lazy" onerror="this.closest(&#39;figure&#39;)?this.closest(&#39;figure&#39;).remove():this.remove()" src="images/biblioteka-dashboard.jpg" alt="Admin dashboard showing totals and loans sorted by due date">
+          <figcaption><span>Admin dashboard — loans by due date</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="shots split" style="margin-top: 1.25rem;">
+        <figure>
+          <img loading="lazy" onerror="this.closest(&#39;figure&#39;)?this.closest(&#39;figure&#39;).remove():this.remove()" src="images/biblioteka-katalog.jpg" alt="Public catalogue with search, category filter and sorting">
+          <figcaption><span>Catalogue &amp; filters</span></figcaption>
+        </figure>
+        <figure>
+          <img loading="lazy" onerror="this.closest(&#39;figure&#39;)?this.closest(&#39;figure&#39;).remove():this.remove()" src="images/biblioteka-home.jpg" alt="Library home page with search and category shortcuts">
+          <figcaption><span>Reader-facing home</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="does">
+        <div>Search by title or author, filtered by category and availability</div>
+        <div>Borrowing requests submitted from the book's own page</div>
+        <div>Requests queue on the admin side, each one processed and resolved</div>
+        <div>Overdue loans surfaced with the exact number of days late</div>
+        <div>Loans issued, marked returned, with active, overdue and history views</div>
+        <div>Books and categories managed from the admin area</div>
+      </div>
+
+      <p class="stack">
+        Built with <span>Laravel · PHP · MySQL · Blade · Bootstrap 5</span>
+        &nbsp;·&nbsp; Source: <a href="https://github.com/v4ck04/biblioteka" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent);">github.com/v4ck04/biblioteka</a>
+      </p>
+
+    </div>
+  </section>
+
+  <section class="project">
+    <div class="wrap">
+
+      <div class="project-head">
+        <div>
+          <p class="eyebrow">Small business &middot; invoicing</p>
+          <h2>Izdavanje računa</h2>
+        </div>
+        <p class="project-problem">
+          Invoices written out by hand and VAT worked out on a calculator — with no quick
+          way to answer <em>how much did we turn over last month</em>. This does the
+          arithmetic, prints the invoice, and keeps the totals.
+        </p>
+      </div>
+
+      <div class="shots">
+        <figure>
+          <img loading="lazy" onerror="this.closest(&#39;figure&#39;)?this.closest(&#39;figure&#39;).remove():this.remove()" src="images/racuni-novi.png" alt="New invoice form with line items, net, VAT and total">
+          <figcaption><span>New invoice — net, VAT and total update as items are added</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="shots split" style="margin-top: 1.25rem;">
+        <figure>
+          <img loading="lazy" onerror="this.closest(&#39;figure&#39;)?this.closest(&#39;figure&#39;).remove():this.remove()" src="images/racuni-izvestaji.png" alt="Reports form showing invoices and turnover for a date range">
+          <figcaption><span>Turnover by date range</span></figcaption>
+        </figure>
+        <figure>
+          <img loading="lazy" onerror="this.closest(&#39;figure&#39;)?this.closest(&#39;figure&#39;).remove():this.remove()" src="images/racuni-stampa.png" alt="Print preview of a finished invoice">
+          <figcaption><span>Print preview</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="does">
+        <div>Item catalogue — add, edit and remove what you sell, each with its own VAT rate</div>
+        <div>Invoice built from items and quantities, with net, VAT and total recalculated on every change</div>
+        <div>Print preview of the finished invoice before it goes to paper</div>
+        <div>Reports over a chosen date range: invoice count, net, VAT and total turnover</div>
+        <div>Each invoice written inside a transaction, so a half-saved invoice can't exist</div>
+        <div>Line items keep their own name, price and VAT rate, so an old invoice stays accurate after a price change</div>
+        <div>Every query parameterised, closing off SQL injection</div>
+        <div>Three-layer structure — models, data access, forms — kept separate</div>
+      </div>
+
+      <p class="stack">Built with <span>C# · .NET Framework 4.8 · WinForms · SQL Server · ADO.NET</span></p>
+
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="wrap">
+      <p class="eyebrow">What I can build for you</p>
+      <h2>Most of my work starts as one of these four.</h2>
+
+      <div class="service-grid">
+        <div>
+          <h3>Booking &amp; scheduling</h3>
+          <p>
+            Reservations and appointments under your own brand, with due dates and
+            overdue items surfaced — and no per-booking cut taken by a platform.
+          </p>
+        </div>
+        <div>
+          <h3>Online store</h3>
+          <p>
+            Products, cart, checkout and discount codes, built around how you actually
+            sell rather than around a theme.
+          </p>
+        </div>
+        <div>
+          <h3>Admin dashboards</h3>
+          <p>
+            The numbers you check every morning, on one screen, with the right access for
+            each person on the team.
+          </p>
+        </div>
+        <div>
+          <h3>Fixing what you have</h3>
+          <p>
+            Speed, mobile layout and accessibility on a site that already exists but
+            isn't pulling its weight.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <h2>Tell me what you're trying to fix.</h2>
+      <p>
+        Send a sentence or two about your business and what's slowing you down. I'll reply
+        with what I'd build and roughly what it would take — no charge for that part.
+      </p>
+      <div class="footer-links">
+        <a class="btn primary" href="mailto:vladicarizic04@gmail.com">Email me</a>
+        <a class="btn" href="https://github.com/v4ck04">GitHub</a>
+      </div>
+      <p class="colophon">Vladica Rizić &middot; Laravel, PHP &amp; C# &middot; Working with clients remotely</p>
+    </div>
+  </footer>
+
+</main>
